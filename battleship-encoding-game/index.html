@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nibble Hunt — A Binary Battleship</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="app-header">
+    <h1>🛰️ Nibble Hunt</h1>
+    <p class="subtitle">Find the hidden enemy sub — but you can only talk to your agent in binary.</p>
+  </header>
+
+  <section class="mission">
+    <p id="missionInfo">Loading mission…</p>
+  </section>
+
+  <details class="howto">
+    <summary>How to Play</summary>
+    <div class="howto-body">
+      <p>The enemy's fourth boat has a computer that can crack normal text, block code, and binary instantly —
+         but it can't intercept silent signals sent through a user interface. So you'll send your agent
+         instructions as a <strong>nibble</strong>: 4 bits (ones and zeros), one bit for each job.</p>
+      <table class="bit-table">
+        <tr><th>Bit</th><th>Meaning</th><th>0</th><th>1</th></tr>
+        <tr><td>1st</td><td>Move</td><td>Stay in place</td><td>Move forward 1 square</td></tr>
+        <tr><td>2nd</td><td>Turn right</td><td>Don't turn right</td><td>Turn 90° right</td></tr>
+        <tr><td>3rd</td><td>Turn left</td><td>Don't turn left</td><td>Turn 90° left</td></tr>
+        <tr><td>4th</td><td>Sonar ping</td><td>No ping</td><td>Ping for nearby boats</td></tr>
+      </table>
+      <p><strong>Examples:</strong> <code>1001</code> = move forward, then ping.
+         <code>1100</code> = move forward, then turn right.</p>
+      <p>A ping sends back its own nibble:</p>
+      <table class="bit-table">
+        <tr><th>Response</th><th>Meaning</th></tr>
+        <tr><td><code>0000</code></td><td>Boat is not adjacent</td></tr>
+        <tr><td><code>0001</code></td><td>Boat is in a square adjacent to the agent</td></tr>
+        <tr><td><code>0010</code></td><td>Boat is directly in front of the agent</td></tr>
+        <tr><td><code>1000</code></td><td>Boat is in the agent's square — found!</td></tr>
+      </table>
+      <p>You won't see the agent's icon move on screen — you have to track its position and facing
+         yourself, using the starting info above and every response you get back. Use the map below
+         as scratch paper to mark your own notes.</p>
+      <p><strong>Careful:</strong> if a move would push the agent off the edge of the map, or you try to
+         turn both directions at once, the whole command is rejected and nothing happens.</p>
+    </div>
+  </details>
+
+  <section class="game-area">
+    <div class="panel command-panel">
+      <h2>Send a Command</h2>
+      <div class="bit-builder">
+        <div class="bit-toggle" data-index="0">
+          <span class="bit-label">Move</span>
+          <button class="bit-btn" data-index="0">0</button>
+        </div>
+        <div class="bit-toggle" data-index="1">
+          <span class="bit-label">Turn R</span>
+          <button class="bit-btn" data-index="1">0</button>
+        </div>
+        <div class="bit-toggle" data-index="2">
+          <span class="bit-label">Turn L</span>
+          <button class="bit-btn" data-index="2">0</button>
+        </div>
+        <div class="bit-toggle" data-index="3">
+          <span class="bit-label">Ping</span>
+          <button class="bit-btn" data-index="3">0</button>
+        </div>
+      </div>
+      <div class="nibble-preview">Nibble: <span id="nibblePreview">0000</span></div>
+      <button id="sendBtn" class="primary-btn">Send Command</button>
+
+      <div class="stats">
+        <span>Commands sent: <strong id="cmdCount">0</strong></span>
+      </div>
+      <button id="newGameBtn" class="secondary-btn">New Game</button>
+    </div>
+
+    <div class="panel log-panel">
+      <h2>Transmission Log</h2>
+      <div id="log" class="log"></div>
+    </div>
+  </section>
+
+  <section class="scratchpad-section">
+    <h2>Your Battle Map (notes only — click a square to mark it)</h2>
+    <div id="grid" class="grid"></div>
+  </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
