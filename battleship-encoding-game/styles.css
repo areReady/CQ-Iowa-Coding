@@ -34,6 +34,16 @@ body {
 .app-header h1 {
   font-size: 2.2rem;
   margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sub-icon {
+  width: 48px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
 .subtitle {
