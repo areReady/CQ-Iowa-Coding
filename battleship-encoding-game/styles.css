@@ -164,6 +164,13 @@ code {
   text-align: center;
 }
 
+.bit-hint {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.2;
+}
+
 .bit-btn {
   width: 100%;
   aspect-ratio: 1;
