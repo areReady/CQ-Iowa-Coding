@@ -237,7 +237,7 @@ function cycleMark(cell) {
 function clearGridMarks() {
   document.querySelectorAll(".grid-cell[data-mark]").forEach((cell) => {
     cell.dataset.mark = "0";
-    cell.classList.remove("mark-dot", "mark-x");
+    cell.classList.remove("mark-dot", "mark-x", "boat-found");
   });
 }
 
