@@ -4,14 +4,16 @@
   --teal: #20948b;
   --amber: #f7cd42;
   --amber-hover: #f9d65c;
-  --dark: #1e293b;
-  --text: #334155;
-  --text-dim: #64748b;
-  --border: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --bg: #ffffff;
-  --bg-soft: #f8fafc;
-  --danger: #cf2e2e;
+  --on-amber: #1e293b;
+  --heading: #f8fafc;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --border: #334155;
+  --border-strong: #475569;
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --danger: #f87171;
+  --danger-strong: #dc2626;
 }
 
 * { box-sizing: border-box; }
@@ -44,7 +46,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--dark);
+  color: var(--heading);
 }
 
 .sub-icon {
@@ -59,17 +61,17 @@ body {
 }
 
 .mission {
-  background: #eaf5fa;
+  background: rgba(0, 132, 183, 0.15);
   border: 1px solid var(--blue);
   border-radius: 8px;
   padding: 14px 18px;
   margin: 16px 0;
   font-size: 1.05rem;
-  color: var(--dark);
+  color: var(--text);
 }
 
 .howto {
-  background: var(--bg-soft);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 18px;
@@ -82,7 +84,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.1rem;
   padding: 6px 0;
-  color: var(--dark);
+  color: var(--heading);
 }
 
 .howto-body p { line-height: 1.5; }
@@ -101,17 +103,17 @@ body {
 }
 
 .bit-table th {
-  background: var(--bg-soft);
-  color: var(--dark);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--heading);
 }
 
 code {
-  background: var(--bg-soft);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--border);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: "Consolas", monospace;
-  color: var(--dark);
+  color: var(--text);
 }
 
 .game-area {
@@ -126,11 +128,11 @@ code {
 }
 
 .panel {
-  background: var(--bg);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px 18px;
-  box-shadow: 0 1px 3px rgba(30, 41, 59, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .panel h2 {
@@ -138,7 +140,7 @@ code {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--blue);
+  color: var(--blue-hover);
 }
 
 .bit-builder {
@@ -170,7 +172,7 @@ code {
   border: 2px solid var(--border-strong);
   border-radius: 6px;
   background: var(--bg);
-  color: var(--dark);
+  color: var(--text);
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
 }
@@ -189,7 +191,7 @@ code {
   font-size: 1.3rem;
   letter-spacing: 4px;
   margin: 10px 0;
-  color: var(--dark);
+  color: var(--heading);
 }
 
 .primary-btn, .secondary-btn {
@@ -206,7 +208,7 @@ code {
 
 .primary-btn {
   background: var(--amber);
-  color: var(--dark);
+  color: var(--on-amber);
 }
 
 .primary-btn:hover { background: var(--amber-hover); }
@@ -217,7 +219,7 @@ code {
   border: 1px solid var(--border-strong);
 }
 
-.secondary-btn:hover { background: var(--bg-soft); }
+.secondary-btn:hover { background: rgba(255, 255, 255, 0.06); }
 
 .stats {
   margin-top: 12px;
@@ -238,7 +240,7 @@ code {
 .log-entry {
   padding: 6px 10px;
   border-radius: 6px;
-  background: var(--bg-soft);
+  background: var(--bg);
   border: 1px solid var(--border);
 }
 
@@ -246,7 +248,7 @@ code {
 .log-entry.response { color: var(--teal); font-weight: 600; }
 .log-entry.error { color: var(--danger); }
 .log-entry.win {
-  color: var(--dark);
+  color: var(--on-amber);
   background: var(--amber);
   border-color: var(--amber);
   font-weight: bold;
@@ -255,7 +257,7 @@ code {
 .scratchpad-section h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  color: var(--blue);
+  color: var(--blue-hover);
   font-size: 1.1rem;
   margin-bottom: 2px;
 }
@@ -281,7 +283,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 0.85rem;
@@ -298,7 +300,7 @@ code {
 
 .grid-cell.mark-dot::after {
   content: "•";
-  color: var(--blue);
+  color: var(--blue-hover);
   font-size: 1.4rem;
 }
 
@@ -309,18 +311,18 @@ code {
 }
 
 .grid-cell.agent {
-  background: #eaf5fa;
+  background: rgba(0, 132, 183, 0.25);
   box-shadow: 0 0 0 2px var(--amber) inset;
 }
 
 .agent-arrow {
   display: inline-block;
   font-size: 1.3rem;
-  color: var(--dark);
+  color: #ffffff;
   transition: transform 0.2s ease;
 }
 
 .grid-cell.boat-found {
-  background: var(--danger);
+  background: var(--danger-strong);
   box-shadow: 0 0 0 2px #fff inset;
 }
