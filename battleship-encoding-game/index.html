@@ -41,9 +41,9 @@
         <tr><td><code>0010</code></td><td>Boat is directly in front of the agent</td></tr>
         <tr><td><code>1000</code></td><td>Boat is in the agent's square — found!</td></tr>
       </table>
-      <p>You won't see the agent's icon move on screen — you have to track its position and facing
-         yourself, using the starting info above and every response you get back. Use the map below
-         as scratch paper to mark your own notes.</p>
+      <p>Watch the arrow on the map below — it shows exactly where your agent is and which way it's
+         facing, and it updates after every command. The enemy boat stays hidden until you find it,
+         so use your ping responses (and your own marks on the map) to figure out where it's hiding.</p>
       <p><strong>Careful:</strong> if a move would push the agent off the edge of the map, or you try to
          turn both directions at once, the whole command is rejected and nothing happens.</p>
     </div>
@@ -86,7 +86,9 @@
   </section>
 
   <section class="scratchpad-section">
-    <h2>Your Battle Map (notes only — click a square to mark it)</h2>
+    <h2>Battle Map</h2>
+    <p class="map-hint">The arrow is your agent — it shows its position and facing. The enemy boat is
+       hidden. Click any square to leave yourself a note.</p>
     <div id="grid" class="grid"></div>
   </section>
 

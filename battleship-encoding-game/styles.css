@@ -224,6 +224,14 @@ code {
 .scratchpad-section h2 {
   color: var(--teal);
   font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+.map-hint {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
 .grid {
@@ -265,4 +273,21 @@ code {
   content: "✕";
   color: var(--danger);
   font-weight: bold;
+}
+
+.grid-cell.agent {
+  background: var(--navy-mid);
+  box-shadow: 0 0 0 2px var(--amber) inset;
+}
+
+.agent-arrow {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: var(--amber);
+  transition: transform 0.2s ease;
+}
+
+.grid-cell.boat-found {
+  background: var(--danger);
+  box-shadow: 0 0 0 2px #fff inset;
 }

@@ -8,9 +8,11 @@ const DIRECTION_DELTA = {
 };
 const DIRECTION_NAME = { N: "North", E: "East", S: "South", W: "West" };
 const COL_LETTERS = "ABCDEFGHIJ";
+const FACING_ROTATION = { N: 0, E: 90, S: 180, W: 270 };
 
 let state = null;
 let bits = [0, 0, 0, 0];
+let gridCells = [];
 
 function randInt(max) {
   return Math.floor(Math.random() * max);
@@ -41,6 +43,7 @@ function newGame() {
   renderStats();
   clearLog();
   clearGridMarks();
+  renderAgent();
 
   const missionEl = document.getElementById("missionInfo");
   missionEl.textContent =
@@ -95,18 +98,21 @@ function sendNibble() {
   state.commandCount++;
   agent.row = newRow;
   agent.col = newCol;
+  renderAgent();
 
   addLogEntry(`Sent ${nibbleStr}`, "sent");
 
   if (agent.row === state.boat.row && agent.col === state.boat.col) {
     state.gameOver = true;
     addLogEntry(`Contact! The enemy boat is in the agent's square. Found in ${state.commandCount} commands!`, "win");
+    markBoatFound();
     renderStats();
     return;
   }
 
   if (bRight === 1) agent.facing = turnRight(agent.facing);
   else if (bLeft === 1) agent.facing = turnLeft(agent.facing);
+  renderAgent();
 
   if (bPing === 1) {
     const response = sonarResponse();
@@ -162,6 +168,7 @@ function addLogEntry(text, cls) {
 function buildGrid() {
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
+  gridCells = [];
 
   const corner = document.createElement("div");
   corner.className = "grid-cell header";
@@ -180,14 +187,41 @@ function buildGrid() {
     rowHeader.textContent = r + 1;
     grid.appendChild(rowHeader);
 
+    const rowCells = [];
     for (let c = 0; c < GRID_SIZE; c++) {
       const cell = document.createElement("div");
       cell.className = "grid-cell";
       cell.dataset.mark = "0";
       cell.addEventListener("click", () => cycleMark(cell));
       grid.appendChild(cell);
+      rowCells.push(cell);
     }
+    gridCells.push(rowCells);
   }
+}
+
+function renderAgent() {
+  gridCells.forEach((row) =>
+    row.forEach((cell) => {
+      cell.classList.remove("agent");
+      const arrow = cell.querySelector(".agent-arrow");
+      if (arrow) arrow.remove();
+    })
+  );
+
+  const { row, col, facing } = state.agent;
+  const cell = gridCells[row][col];
+  cell.classList.add("agent");
+  const arrow = document.createElement("span");
+  arrow.className = "agent-arrow";
+  arrow.textContent = "▲";
+  arrow.style.transform = `rotate(${FACING_ROTATION[facing]}deg)`;
+  cell.appendChild(arrow);
+}
+
+function markBoatFound() {
+  const cell = gridCells[state.boat.row][state.boat.col];
+  cell.classList.add("boat-found");
 }
 
 function cycleMark(cell) {
