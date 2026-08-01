@@ -163,6 +163,7 @@ function addLogEntry(text, cls) {
   entry.className = `log-entry ${cls}`;
   entry.textContent = text;
   log.appendChild(entry);
+  log.scrollTop = log.scrollHeight;
 }
 
 function buildGrid() {
